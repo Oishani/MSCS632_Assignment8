@@ -64,17 +64,17 @@ uncle_or_aunt(X, Y) :- parent(Z, Y), sibling(X, Z).
 uncle_or_aunt_list(X, L) :- setof(Y, uncle_or_aunt(Y, X), L), !; L = [].
 
 % --- Sample Queries ---
-% child(C, john).           % Who are the children of john?
-% sibling_list(mary, L).    % Who are the siblings of mary?
-% grandparent(G, alice).    % Who are the grandparents of alice?
-% mother(M, carol).         % Who is the mother of carol?
-% father(F, dave).          % Who is the father of dave?
-% cousin_list(emma, L).     % Who are the cousins of emma?
-% descendant(D, john).      % Who are the descendants of john?
-% ancestor(A, grace).       % Who are the ancestors of grace?
-% uncle_or_aunt_list(bob, L). % Who are the uncles/aunts of bob?
-% child(C, frank).          % Who are the children of frank? (should be empty)
-% cousin_list(henry, L).    % Who are the cousins of henry? (should be empty)
+% child(C, john).           % Who are the children of john?            % Expected: C = mary ; C = tom.
+% sibling_list(mary, L).    % Who are the siblings of mary?            % Expected: L = [tom]
+% grandparent(G, alice).    % Who are the grandparents of alice?       % Expected: G = john ; G = susan.
+% mother(M, carol).         % Who is the mother of carol?              % Expected: M = lisa.
+% father(F, dave).          % Who is the father of dave?               % Expected: F = tom.
+% cousin_list(emma, L).     % Who are the cousins of emma?             % Expected: L = []
+% descendant(D, john).      % Who are the descendants of john?         % Expected: D = mary ; D = tom ; D = alice ; D = bob ; D = emma ; D = frank ; D = carol ; D = dave ; D = grace ; D = henry.
+% ancestor(A, grace).       % Who are the ancestors of grace?          % Expected: A = carol ; A = tom ; A = john ; A = lisa ; A = susan.
+% uncle_or_aunt_list(bob, L). % Who are the uncles/aunts of bob?       % Expected: L = [tom]
+% child(C, frank).          % Who are the children of frank? (should be empty) % Expected: L = []
+% cousin_list(henry, L).    % Who are the cousins of henry? (should be empty) % Expected: L = []
 
 % --- Demo Entrypoint ---
 main :-
